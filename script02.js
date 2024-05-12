@@ -1,19 +1,27 @@
-const str = "khkhka";
+const str = "caiac";
 
 function sliceStr(str) {
   let newStr = str.split("");
+  let rev = newStr.slice().reverse().join("");
+  if (rev === str) {
+    console.log("Chuỗi " + str + " hiện tại đã là palindrome.");
+  }
+
   for (let i = 0; i < newStr.length; i++) {
-    let j = str.replace(newStr[i], '');
-    checkPalindrome(j, newStr[i])
+    let j = str.slice(0, i) + str.slice(i + 1);
+    if (checkPalindrome(j)) {
+      console.log(str + " có thể thành palindrome, sau khi xoá " + newStr[i] + " : " + j);
+      return true;
+    }
   }
+
+  console.log("Không có cách nào để xoá ký tự và tạo thành palindrome.");
+  return false;
 }
 
-function checkPalindrome(str, delStr) {
+function checkPalindrome(str) {
   let rev = str.split("").reverse().join("");
-  if (rev == str) {
-    console.log("Sau khi xoá " + delStr + " thì chuổi là plaindrome :" + str);
-    return true;
-  }
+  return rev === str;
 }
 
-sliceStr(str)
+sliceStr(str);
